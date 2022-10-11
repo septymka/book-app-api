@@ -1,3 +1,4 @@
+
 # Book-app
 
 ---
@@ -6,6 +7,7 @@
 ## REST API
 
 ---
+
 ### Books
 
 #### Get a list of all books
@@ -122,7 +124,9 @@ Example response:
   }
 }
 ```
+
 #### Update the book with id = book_id
+
     PATCH /books/<book_id>/
 Example request body:
 
@@ -171,13 +175,16 @@ Example response:
   }
 }
 ```
+
 #### Delete book with id = book_id
     DELETE /books/<book_id>/
 
 ---
+
 ### Authors
 
-#### Get a list of all authors.
+#### Get a list of all authors
+
     GET /authors/
 Example response:
  ```json
@@ -202,7 +209,9 @@ Example response:
   }
 ]
  ```
+
 #### Get the author with id = author_id
+
     GET /authors/<author_id>/
 Example response:
  ```json
@@ -225,7 +234,9 @@ Example response:
   ]
 }
  ```
+
 #### Add a new author
+
     POST /authors/<author_id>/
 Example request body:
 ```json
@@ -248,7 +259,9 @@ Example response:
   "description": "Short biography of the author."
 }
 ```
+
 #### Update the author with id = author_id
+
     PATCH /authors/<author_id>/
 
 Example request body:
@@ -278,8 +291,11 @@ Example response:
 
     DELETE /authors/<author_id>/
 ---
+
 ### Genres
+
 #### Get a list of all genres
+
     GET /genres/
 Example response:
 ```json
@@ -300,7 +316,9 @@ Example response:
   }
 ]
 ```
+
 #### Add a new genre
+
     POST /genres/
 Example request body:
 ```json
@@ -317,6 +335,7 @@ Example response:
 ```
 
 #### Get the genre with id = genre_id
+
     GET /genres/<genre_id>/
 Example response:
 ```json
@@ -335,6 +354,7 @@ Example response:
   ]
 }
 ```
+
 #### Update the genre with id = genre_id
 
     PATCH /genres/<genre_id>/
@@ -357,6 +377,7 @@ Example response:
     DELETE /genres/<genre_id>/
 
 ---
+
 ### Reviews
 
 #### Get a list of all current user reviews
@@ -376,7 +397,9 @@ Example response:
   }
 ]
 ```
+
 #### Add new review
+
     POST /reviews/
 Example request body:
 ```json
@@ -402,6 +425,7 @@ Example response:
 ```
 
 #### Get the review wih id = review_id
+
     GET /reviews/<review_id>/
 Example response:
 ```json
@@ -417,6 +441,7 @@ Example response:
 ```
 
 #### Update the review with id = review_id
+
     PATCH /reviews/<review_id>/
 Example request body:
 ```json
