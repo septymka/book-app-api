@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-10-12T11:19:54.055Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="TTkD1uwX18woP4IY8sz5" version="20.4.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-10-17T12:22:25.338Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="8HNhSO5tgVLXGJIUSELE" version="20.4.0" type="github">
   <diagram id="s7VfImjHDvYRI_QysGJR" name="Page-1">
     <mxGraphModel dx="1102" dy="583" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -19,7 +19,7 @@
         <mxCell id="cwmqz-rW-tngIg4IeIsU-10" value="+ genre: Genre [1..*]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="cwmqz-rW-tngIg4IeIsU-7" vertex="1">
           <mxGeometry y="104" width="180" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="cwmqz-rW-tngIg4IeIsU-42" value="+ image: Image" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="cwmqz-rW-tngIg4IeIsU-7" vertex="1">
+        <mxCell id="cwmqz-rW-tngIg4IeIsU-42" value="+ image: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="cwmqz-rW-tngIg4IeIsU-7" vertex="1">
           <mxGeometry y="130" width="180" height="26" as="geometry" />
         </mxCell>
         <mxCell id="cwmqz-rW-tngIg4IeIsU-11" value="+ rating: float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="cwmqz-rW-tngIg4IeIsU-7" vertex="1">
