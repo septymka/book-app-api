@@ -1,3 +1,13 @@
 from django.db import models
 
-# Create your models here.
+from books.models import Book
+
+
+class BookReview(models.Model):
+    # TODO add user
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    review = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.book
