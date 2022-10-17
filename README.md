@@ -37,10 +37,12 @@ Example response:
     "image": "image_url",
     "rating": 7.8,
     "number_of_ratings": 230,
-    "book_review": {
-      "user": "Username",
-      "review": "Commentary on the book."
-    }
+    "book_review": [
+      {
+        "user": "Username",
+        "review": "Commentary on the book."
+      }
+    ]
   }
 ]
  ```
@@ -99,11 +101,11 @@ Example response:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "title": "The Book Title",
   "author": [
     {
-      "id": 0,
+      "id": 1,
       "first_name": "John",
       "last_name": "Smith"
     }
@@ -111,17 +113,19 @@ Example response:
   "summary": "Short summary of the book.",
   "genre": [
     {
-      "id": 0,
+      "id": 1,
       "name": "Fantasy"
     }
   ],
   "image": "image_url",
   "rating": 7.8,
   "number_of_ratings": 230,
-  "book_review": {
-    "user": "Username",
-    "review": "Commentary on the book."
-  }
+  "book_review": [
+    {
+      "user": "Username",
+      "review": "Commentary on the book."
+    }
+  ]
 }
 ```
 
@@ -135,7 +139,7 @@ Example request body:
   "title": "The Book Title",
   "author": [
     {
-      "id": 0
+      "id": 1
     }
   ],
   "summary": "Short summary of the book.",
@@ -150,11 +154,11 @@ Example request body:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "title": "The Book Title",
   "author": [
     {
-      "id": 0,
+      "id": 1,
       "first_name": "John",
       "last_name": "Smith"
     }
@@ -162,17 +166,19 @@ Example response:
   "summary": "Short summary of the book.",
   "genre": [
     {
-      "id": 0,
+      "id": 1,
       "name": "Fantasy"
     }
   ],
   "image": "image_url",
   "rating": 7.8,
   "number_of_ratings": 230,
-  "book_review": {
-    "user": "Username",
-    "review": "Commentary on the book."
-  }
+  "book_review": [
+    {
+      "user": "Username",
+      "review": "Commentary on the book."
+    }
+  ]
 }
 ```
 
@@ -190,7 +196,7 @@ Example response:
  ```json
 [
   {
-    "id": 0,
+    "id": 1,
     "first_name": "John",
     "last_name": "Smith",
     "date_of_birth": "20/09/1923",
@@ -198,7 +204,7 @@ Example response:
     "description": "Short biography of the author.",
     "books": [
       {
-        "id": 0,
+        "id": 1,
         "title": "The Book"
       },
       {
@@ -216,7 +222,7 @@ Example response:
 Example response:
  ```json
 {
-  "id": 0,
+  "id": 1,
   "first_name": "John",
   "last_name": "Smith",
   "date_of_birth": "20/09/1923",
@@ -224,11 +230,11 @@ Example response:
   "description": "Short biography of the author.",
   "books": [
     {
-      "id": 0,
+      "id": 1,
       "title": "The Book"
     },
     {
-      "id": 1,
+      "id": 2,
       "title": "New Book"
     }
   ]
@@ -251,7 +257,7 @@ Example request body:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "first_name": "John",
   "last_name": "Smith",
   "date_of_birth": "20/09/1923",
@@ -278,7 +284,7 @@ Example request body:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "first_name": "John",
   "last_name": "Smith",
   "date_of_birth": "20/09/1923",
@@ -301,15 +307,15 @@ Example response:
 ```json
 [
   {
-    "id": 0,
+    "id": 1,
     "name": "Fantasy",
     "books": [
       {
-        "id": 0,
+        "id": 1,
         "title": "The Book"
       },
       {
-        "id": 1,
+        "id": 2,
         "title": "New Book"
       }
     ]
@@ -329,7 +335,7 @@ Example request body:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "name": "Fantasy"
 }
 ```
@@ -340,15 +346,15 @@ Example response:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "name": "Fantasy",
   "books": [
     {
-      "id": 0,
+      "id": 1,
       "title": "The Book"
     },
     {
-      "id": 1,
+      "id": 2,
       "title": "New Book"
     }
   ]
@@ -367,7 +373,7 @@ Example request body:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "name": "Fantasy"
 }
 ```
@@ -387,9 +393,9 @@ Example response:
 ```json
 [
   {
-    "id": 0,
+    "id": 1,
     "book": {
-      "id": 0,
+      "id": 1,
       "title": "The Book"
     },
     "rating": 7,
@@ -405,7 +411,7 @@ Example request body:
 ```json
 {
   "book": {
-    "id": 0
+    "id": 1
   },
   "rating": 7,
   "review": "Good"
@@ -414,9 +420,9 @@ Example request body:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "book": {
-    "id": 0,
+    "id": 1,
     "title": "The Book"
   },
   "rating": 7,
@@ -430,9 +436,9 @@ Example response:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "book": {
-    "id": 0,
+    "id": 1,
     "title": "The Book"
   },
   "rating": 7,
@@ -447,7 +453,7 @@ Example request body:
 ```json
 {
   "book": {
-    "id": 0
+    "id": 1
   },
   "rating": 7,
   "review": "Good"
@@ -456,9 +462,9 @@ Example request body:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "book": {
-    "id": 0,
+    "id": 1,
     "title": "The Book"
   },
   "rating": 7,
