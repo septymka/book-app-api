@@ -7,9 +7,9 @@ from authors.models import Author
 class Book(models.Model):
     title = models.CharField(max_length=255)
     authors = models.ManyToManyField(Author)
-    summary = models.TextField(blank=True)
+    summary = models.TextField(blank=True, null=True)
     genres = models.ManyToManyField(Genre)
-    image = models.CharField(max_length=500, blank=True)
+    image = models.CharField(max_length=500, blank=True, null=True)
     rating = models.FloatField()
     number_of_ratings = models.IntegerField()
 
