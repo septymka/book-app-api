@@ -18,11 +18,11 @@ Example response:
  ```json
 [
   {
-    "id": 0,
+    "id": 1,
     "title": "The Book Title",
     "author": [
       {
-        "id": 0,
+        "id": 1,
         "first_name": "John",
         "last_name": "Smith"
       }
@@ -30,7 +30,7 @@ Example response:
     "summary": "Short summary of the book.",
     "genre": [
       {
-        "id": 0,
+        "id": 1,
         "name": "Fantasy"
       }
     ],
@@ -59,7 +59,7 @@ Example request body:
   "title": "The Book Title",
   "author": [
     {
-      "id": 0
+      "id": 1
     }
   ],
   "summary": "Short summary of the book.",
@@ -74,11 +74,11 @@ Example request body:
 Example response:
 ```json
 {
-  "id": 0,
+  "id": 1,
   "title": "The Book Title",
   "author": [
     {
-      "id": 0,
+      "id": 1,
       "first_name": "John",
       "last_name": "Smith"
     }
@@ -86,7 +86,7 @@ Example response:
   "summary": "Short summary of the book.",
   "genre": [
     {
-      "id": 0,
+      "id": 1,
       "name": "Fantasy"
     }
   ],
@@ -475,5 +475,3 @@ Example response:
 #### Delete review with id = review_id
 
     DELETE /review/<review_id>/
-
-
