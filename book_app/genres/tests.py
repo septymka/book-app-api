@@ -56,6 +56,8 @@ class DetailGenreApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.genre = Genre.objects.create(name='Fantasy')
+        self.payload = {'name': 'Mystery'}
+        self.nonexistent_genre_id = 100
 
     def test_get_genre_detail_existing(self):
         serializer = GenreSerializer(self.genre)
@@ -66,25 +68,21 @@ class DetailGenreApiTests(TestCase):
         self.assertEqual(resp.data, serializer.data)
 
     def test_get_genre_detail_nonexistent(self):
-        nonexistent_genre_id = 100
-        url = detail_url(nonexistent_genre_id)
+        url = detail_url(self.nonexistent_genre_id)
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_patch_genre(self):
         url = detail_url(self.genre.id)
-        payload = {'name': 'Mystery'}
-        resp = self.client.patch(url, payload)
+        resp = self.client.patch(url, self.payload)
 
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.genre.refresh_from_db()
-        self.assertEqual(self.genre.name, payload['name'])
+        self.assertEqual(self.genre.name, self.payload['name'])
 
     def test_patch_genre_nonexistent(self):
-        nonexistent_genre_id = 100
-        url = detail_url(nonexistent_genre_id)
-        payload = {'name': 'Mystery'}
-        resp = self.client.patch(url, payload)
+        url = detail_url(self.nonexistent_genre_id)
+        resp = self.client.patch(url, self.payload)
 
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
@@ -96,8 +94,7 @@ class DetailGenreApiTests(TestCase):
         self.assertFalse(Genre.objects.filter(id=self.genre.id).exists())
 
     def test_delete_genre_nonexistent(self):
-        nonexistent_genre_id = 100
-        url = detail_url(nonexistent_genre_id)
+        url = detail_url(self.nonexistent_genre_id)
         resp = self.client.delete(url)
 
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
