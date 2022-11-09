@@ -7,22 +7,14 @@ from rest_framework import status
 
 from authors.serializers import AuthorSerializer
 from authors.models import Author
+from authors.factories import AuthorFactory
 
 
 AUTHORS_URL = reverse('author:author-list')
 
+
 def detail_url(author_id):
     return reverse('author:author-detail', args=[author_id])
-def create_author(**params):
-    defaults = {
-        'first_name': 'Ken',
-        'last_name': 'Follett',
-        'date_of_birth': date(1949, 6, 5),
-        'description': 'British author of thrillers and historical novels'
-    }
-    defaults.update(params)
-    author = Author.objects.create(**defaults)
-    return author
 
 
 class AuthorApiTests(TestCase):
@@ -37,14 +29,8 @@ class AuthorApiTests(TestCase):
         self.assertEqual(resp.json(), expected)
 
     def test_get_authors_with_two_authors(self):
-        create_author()
-        create_author(
-            first_name='Terry',
-            last_name='Pratchett',
-            date_of_birth=date(1948, 4, 28),
-            date_of_death=date(2015, 3, 12),
-            description='English satirist and author of fantasy novels.'
-        )
+        AuthorFactory()
+        AuthorFactory()
         resp = self.client.get(AUTHORS_URL)
         authors = Author.objects.all().order_by('last_name', 'first_name')
         serializer = AuthorSerializer(authors, many=True)
@@ -70,7 +56,7 @@ class DetailAuthorApiTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.author = create_author()
+        self.author = AuthorFactory()
         self.nonexistent_author_id = 100
         self.payload = {
             'first_name': 'Kenneth'
@@ -83,7 +69,6 @@ class DetailAuthorApiTests(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.data, serializer.data)
 
-
     def test_get_author_detail_nonexistent(self):
         url = detail_url(self.nonexistent_author_id)
         resp = self.client.get(url)
@@ -91,12 +76,9 @@ class DetailAuthorApiTests(TestCase):
 
     def test_patch_author(self):
         url = detail_url(self.author.id)
-        payload = {
-            'first_name': 'Kenneth'
-        }
-        resp = self.client.patch(url, payload)
+        resp = self.client.patch(url, self.payload)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
-        self.assertEqual(resp.data['first_name'], payload['first_name'])
+        self.assertEqual(resp.data['first_name'], self.payload['first_name'])
 
     def test_patch_author_nonexistent(self):
         url = detail_url(self.nonexistent_author_id)
