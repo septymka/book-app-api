@@ -48,7 +48,7 @@ class AuthorApiTests(TestCase):
 
 class DetailAuthorApiTests(TestCase):
 
-    def detail_url(self, author_id):
+    def _detail_url(self, author_id):
         return reverse('author:author-detail', args=[author_id])
 
     def setUp(self):
@@ -61,34 +61,34 @@ class DetailAuthorApiTests(TestCase):
 
     def test_get_author_detail_existing(self):
         serializer = AuthorSerializer(self.author)
-        url = self.detail_url(self.author.id)
+        url = self._detail_url(self.author.id)
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.data, serializer.data)
 
     def test_get_author_detail_nonexistent(self):
-        url = self.detail_url(self.nonexistent_author_id)
+        url = self._detail_url(self.nonexistent_author_id)
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_patch_author(self):
-        url = self.detail_url(self.author.id)
+        url = self._detail_url(self.author.id)
         resp = self.client.patch(url, self.payload)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.data['first_name'], self.payload['first_name'])
 
     def test_patch_author_nonexistent(self):
-        url = self.detail_url(self.nonexistent_author_id)
+        url = self._detail_url(self.nonexistent_author_id)
         resp = self.client.patch(url, self.payload)
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_delete_author(self):
-        url = self.detail_url(self.author.id)
+        url = self._detail_url(self.author.id)
         resp = self.client.delete(url)
         self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Author.objects.filter(id=self.author.id).exists())
 
     def test_delete_author_nonexistent(self):
-        url = self.detail_url(self.nonexistent_author_id)
+        url = self._detail_url(self.nonexistent_author_id)
         resp = self.client.delete(url)
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
