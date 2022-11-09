@@ -10,16 +10,14 @@ from authors.models import Author
 from authors.factories import AuthorFactory
 
 
-AUTHORS_URL = reverse('author:author-list')
-
-
 class AuthorApiTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
+        self.authors_url = reverse('author:author-list')
 
     def test_get_authors_with_no_authors(self):
-        resp = self.client.get(AUTHORS_URL)
+        resp = self.client.get(self.authors_url)
         expected = []
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.json(), expected)
@@ -27,7 +25,7 @@ class AuthorApiTests(TestCase):
     def test_get_authors_with_two_authors(self):
         AuthorFactory()
         AuthorFactory()
-        resp = self.client.get(AUTHORS_URL)
+        resp = self.client.get(self.authors_url)
         authors = Author.objects.all().order_by('last_name', 'first_name')
         serializer = AuthorSerializer(authors, many=True)
 
@@ -41,7 +39,7 @@ class AuthorApiTests(TestCase):
             'date_of_birth': date(1960, 8, 13),
             'description': 'British mountaineer and author.'
         }
-        resp = self.client.post(AUTHORS_URL, new_author)
+        resp = self.client.post(self.authors_url, new_author)
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
         author = Author.objects.get(id=resp.data['id'])
         for k, v in new_author.items():
