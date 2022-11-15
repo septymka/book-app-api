@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager,
-    AbstractBaseUser
+    AbstractBaseUser,
+    PermissionsMixin
 )
 
 
@@ -16,26 +17,26 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, password, **extra_fields):
-        user = self.create_user(email, password, **extra_fields)
-        user.staff = True
+    def create_staffuser(self, email, password):
+        user = self.create_user(email, password)
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password):
         user = self.create_user(email, password=password)
-        user.staff = True
-        user.admin = True
-        user.save(self._db)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    staff = models.BooleanField(default=False)
-    admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    # admin = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -45,10 +46,10 @@ class User(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    @property
-    def is_staff(self):
-        return self.staff
+    # @property
+    # def is_staff(self):
+    #     return self.staff
 
-    @property
-    def is_admin(self):
-        return self.admin
+    # @property
+    # def is_admin(self):
+    #     return self.admin
