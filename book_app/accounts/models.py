@@ -36,7 +36,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     is_staff = models.BooleanField(default=False)
-    # admin = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -45,11 +44,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-
-    # @property
-    # def is_staff(self):
-    #     return self.staff
-
-    # @property
-    # def is_admin(self):
-    #     return self.admin
