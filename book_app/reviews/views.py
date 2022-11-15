@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from reviews.models import BookReview
+from reviews.serializers import BookReviewSerializer
+
+
+class BookReviewViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allow to view and modify book review
+    """
+    queryset = BookReview.objects.all()
+    serializer_class = BookReviewSerializer
