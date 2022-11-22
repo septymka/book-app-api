@@ -3,11 +3,6 @@ from reviews.models import BookReview
 
 
 class BookReviewSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(
-        read_only=True,
-        default=serializers.CurrentUserDefault()
-    )
-
 
     class Meta:
         model = BookReview
@@ -18,4 +13,9 @@ class BookReviewSerializer(serializers.ModelSerializer):
             'rating',
             'review'
         ]
-        read_only_fields = ['id']
+        read_only_fields = ['id', 'user']
+
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        review = BookReview.objects.create(**validated_data)
+        return review
