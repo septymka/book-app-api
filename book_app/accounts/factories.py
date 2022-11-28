@@ -8,9 +8,8 @@ DEFAULT_PASSWORD = 'test123'
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = get_user_model()
-        # exclude = ('plaintext_password', )
 
-    email = 'john_snow101@example.com'
+    email = factory.Sequence(lambda n: 'user%d@example.com' % n)
     first_name = 'John'
     last_name = 'Snow'
     password = factory.PostGenerationMethodCall(

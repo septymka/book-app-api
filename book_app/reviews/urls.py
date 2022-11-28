@@ -8,7 +8,8 @@ router = DefaultRouter()
 router.register('reviews', views.BookReviewViewSet)
 
 app_name = 'review'
+base_name = 'review'
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]
