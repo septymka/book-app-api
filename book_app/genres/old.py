@@ -14,7 +14,7 @@ def detail_url(genre_id):
     return reverse('genre:genre-detail', args=[genre_id])
 
 
-class GenreApiTests(TestCase):
+class PublicGenreApiTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
@@ -41,23 +41,27 @@ class GenreApiTests(TestCase):
         new_genre_name = 'Drama'
         payload = {'name': new_genre_name}
         resp = self.client.post(GENRES_URL, payload)
-        self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(resp.data['name'], new_genre_name)
-
-    def test_post_genres_existing(self):
-        new_genre_name = 'History'
-        Genre.objects.create(name=new_genre_name)
-        payload = {'name': new_genre_name}
-        resp = self.client.post(GENRES_URL, payload)
-        self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(resp.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class DetailGenreApiTests(TestCase):
+
+class PrivateGenreApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.genre = Genre.objects.create(name='Fantasy')
         self.payload = {'name': 'Mystery'}
         self.nonexistent_genre_id = 100
+
+    def test_post_genres_existing(self):
+        Genre.objects.create(name=self.payload['name'])
+        resp = self.client.post(GENRES_URL, self.payload)
+        self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_post_genres_nonexistent(self):
+
+        resp = self.client.post(GENRES_URL, self.payload)
+        self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(resp.data['name'], self.payload['name'])
 
     def test_get_genre_detail_existing(self):
         serializer = GenreSerializer(self.genre)
