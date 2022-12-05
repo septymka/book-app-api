@@ -1,7 +1,9 @@
 from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
 
 from authors.models import Author
 from authors.serializers import AuthorSerializer
+from authors.permissions import IsAdminOrReadOnly
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
@@ -10,3 +12,5 @@ class AuthorViewSet(viewsets.ModelViewSet):
     """
     queryset = Author.objects.all().order_by('last_name', 'first_name')
     serializer_class = AuthorSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdminOrReadOnly]
