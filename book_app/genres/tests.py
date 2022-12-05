@@ -78,7 +78,6 @@ class AdminGenreApiTests(TestCase):
         self.payload = {'name': 'Mystery'}
         self.nonexistent_genre_id = 100
 
-
     def test_post_genre(self):
         resp = self.client.post(GENRES_URL, data=self.payload)
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
