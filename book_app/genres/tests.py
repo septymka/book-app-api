@@ -85,7 +85,8 @@ class AdminGenreApiTests(TestCase):
     def test_post_genre_existing(self):
         GenreFactory(name=self.payload['name'])
         resp = self.client.post(GENRES_URL, data=self.payload)
-        self.assertEqual(resp.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(resp.data['name'], self.payload['name'])
 
     def test_patch_genre(self):
         genre = GenreFactory()

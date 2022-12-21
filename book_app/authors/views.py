@@ -13,5 +13,5 @@ class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all().order_by('last_name', 'first_name')
     serializer_class = AuthorSerializer
     http_method_names = ['get', 'post', 'patch', 'delete']
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAdminOrReadOnly]
+    #authentication_classes = [TokenAuthentication]
+    #permission_classes = [IsAdminOrReadOnly]

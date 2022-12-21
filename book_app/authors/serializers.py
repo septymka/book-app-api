@@ -14,3 +14,14 @@ class AuthorSerializer(serializers.ModelSerializer):
             'description'
         ]
         read_only_fields = ['id']
+
+
+class AuthorInBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = [
+            'id',
+            'last_name',
+            'first_name'
+        ]
+        read_only_fields = []

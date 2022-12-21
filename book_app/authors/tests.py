@@ -75,7 +75,7 @@ class PublicAuthorApiTests(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class AdminAythorApiTests(TestCase):
+class AdminAuthorApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.superuser = User.objects.create_superuser('admin@example.com', 'testpass123')
