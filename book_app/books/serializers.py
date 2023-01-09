@@ -24,10 +24,9 @@ class BookSerializer(serializers.ModelSerializer):
             'number_of_ratings'
         ]
 
-        read_only_fields = ['id']
+        read_only_fields = ['id', 'rating', 'number_of_ratings']
 
     def create(self, validated_data):
-        print(validated_data)
         genres = validated_data.pop('genres', [])
         authors = validated_data.pop('authors', [])
         book = Book.objects.create(**validated_data)

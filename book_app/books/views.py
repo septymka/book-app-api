@@ -13,8 +13,8 @@ class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all().order_by('title')
     serializer_class = BookSerializer
     http_method_names = ['get', 'post', 'patch', 'delete']
-    #authentication_classes = [TokenAuthentication]
-    #permission_classes = [IsAdminOrReadOnly]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAdminOrReadOnly]
 
 
     def perform_create(self, serializer):
