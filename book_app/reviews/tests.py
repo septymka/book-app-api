@@ -60,6 +60,7 @@ class PrivateReviewApiTests(TestCase):
             "rating": 7,
             "review": "Good"
         }
+
         self.client.force_authenticate(self.user)
 
     def test_create_review(self):

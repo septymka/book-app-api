@@ -7,3 +7,10 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = ['id', 'name']
         read_only_fields = ['id']
+
+    def create(self, validated_data):
+        genre_obj, created = Genre.objects.get_or_create(**validated_data)
+        return genre_obj
+
+    def validate_name(self, value):
+        return value.title()

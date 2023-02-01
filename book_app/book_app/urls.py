@@ -22,5 +22,6 @@ urlpatterns = [
     path('', include('genres.urls')),
     path('', include('authors.urls')),
     path('', include('reviews.urls')),
+    path('', include('books.urls')),
     path('user/', include('accounts.urls')),
 ]

@@ -7,6 +7,8 @@ from reviews.permissions import IsOwnerOrReadOnly
 from reviews.models import BookReview
 from reviews.serializers import BookReviewSerializer
 
+from books.models import Book
+
 
 class BookReviewViewSet(viewsets.ModelViewSet):
     """
@@ -18,5 +20,8 @@ class BookReviewViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
+
+
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        book = Book.objects.get(id=self.request.data.get("book"))
+        serializer.save(user=self.request.user, book=book)
